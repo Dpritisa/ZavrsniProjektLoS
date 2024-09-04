@@ -9,7 +9,8 @@ using System.Collections.Generic;
 
 public class Solver : MonoBehaviour
 {
-    public Transform starter;
+            
+        public Transform starter;
     public Transform playerTransform;
     public Transform targetTransform;
     public float initialSearchRadius = 10f;
@@ -29,6 +30,7 @@ public class Solver : MonoBehaviour
 
     void Start()
     {
+        float startTime = Time.realtimeSinceStartup;
         initialPlayerPosition = playerTransform.position;
 
         // First check if the current position can see the target
@@ -57,7 +59,9 @@ public class Solver : MonoBehaviour
 
         initialPlayerPosition += new Vector3(0f, 10f, 0f);
         starter.position = initialPlayerPosition;
+        float endTime = Time.realtimeSinceStartup;
          Debug.Log("Ukupan broj raycasteva: " + brojac);
+         Debug.Log($"Time elapsed: {(endTime - startTime) * 1000.0f} ms");
     }
 
     void SearchForVisiblePoint()
@@ -199,3 +203,4 @@ public class Solver : MonoBehaviour
         }
     }
 }
+
